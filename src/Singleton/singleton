@@ -10,3 +10,108 @@ object when application started itself , so it might create an object when we do
 Cannot pass non static dependencies 
 
 Lazy Solution : (Multithreading):
+✅ Singleton Design Pattern – Full Explanation
+The Singleton Pattern ensures that a class has only one instance and provides a global point of access to it. It's one of the simplest and most commonly used creational design patterns.
+
+🔧 Why Use Singleton?
+To control access to resources (e.g., file systems, databases, logger, config manager).
+
+Ensure consistency (only one instance managing shared state).
+
+Basic Structure:
+
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {} // private constructor to prevent instantiation
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+
+Thread-safe Version (Double-Checked Locking) : 
+
+public class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized(Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+Volatile ensures visibility across threads.
+Double-check locking improves performance.
+
+
+Early Initialization Singleton (Eager loading) : 
+public class Singleton {
+    private static final Singleton instance = new Singleton();
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+Use when the instance is lightweight or always needed.
+
+Singleton with Enum (Best Practice) : 
+public enum Singleton {
+    INSTANCE;
+
+    public void doSomething() {
+        System.out.println("Doing work...");
+    }
+}
+Thread-safe
+Serialization-safe
+No reflection issues
+
+✅ Common Singleton Interview Questions
+1. What is the Singleton pattern?
+It ensures a class has only one instance and provides a global point of access to it.
+
+2. How do you make a class Singleton in Java?
+By:
+Making the constructor private.
+Creating a static instance.
+Providing a public static method to access the instance.
+
+3. How do you make Singleton thread-safe?
+Use:
+Synchronized method/block
+Double-checked locking with volatile
+Enum-based singleton (recommended)
+
+4. Why is volatile used in Singleton?
+Prevents the JVM from reordering the creation of the Singleton instance, ensuring visibility across threads.
+
+5. Can you break Singleton?
+Yes, through:
+Reflection
+Serialization
+Cloning
+
+Solutions:
+Prevent reflection by throwing exception in constructor if instance already exists.
+Use readResolve() for serialization.
+Override clone() to throw exception.
+
+6. Difference between eager and lazy initialization?
+Feature	            Eager	               Lazy
+Instantiation Time	At class loading	   When getInstance() is called
+Performance	        May waste resources	   Efficient if used conditionally
+Thread Safety    	Naturally thread-safe  Needs handling
