@@ -1,0 +1,12 @@
+Problems with the singleton when usinfg simple static method : 
+
+If two or more threads try to access a static metod at the same time , 
+it will crerate multiple objects 
+
+private static DBConnection INSTANCE = null; if we try to initiliaze 
+private static DBConnection INSTANCE = new DBConnection(); , Then it will always create 
+object only once , but the problem is since it is a static , it will always create an 
+object when application started itself , so it might create an object when we don't need also 
+Cannot pass non static dependencies 
+
+Lazy Solution : (Multithreading):
