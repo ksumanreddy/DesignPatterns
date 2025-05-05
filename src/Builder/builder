@@ -1,0 +1,10 @@
+The Builder Pattern is a creational design pattern that lets you construct complex objects step by step. It allows you to create different types and representations of an object using the same construction code.
+
+Why Use the Builder Pattern?
+Imagine you want to create a User object with many optional fields like email, phone, address, etc. Using a constructor with many parameters becomes confusing and error-prone. Builder pattern solves this problem elegantly.
+
+Benefits
+Avoids telescoping constructors (constructors with lots of parameters).
+Makes the code more readable and maintainable.
+Allows immutable object creation.
+Flexible — you can create different configurations of the same object.
