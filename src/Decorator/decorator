@@ -1,0 +1,20 @@
+The Decorator Design Pattern is a structural pattern that allows behavior to be added to individual objects, dynamically, without affecting the behavior of other objects from the same class.
+
+🔧 Intent
+To attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
+
+🏗️ Structure
+Here's a breakdown of the main components:
+
+Component	Role
+Component	Interface or abstract class defining the object behavior
+ConcreteComponent	The core object that implements the Component
+Decorator	Abstract class implementing the Component and holding a reference to a Component
+ConcreteDecorator	Adds new behavior before/after delegating to the wrapped Component
+
+💡 Real-world Analogy
+A coffee order:
+
+Plain coffee = ConcreteComponent
+
+Milk, Sugar, Whipped Cream = Decorators that add new features
