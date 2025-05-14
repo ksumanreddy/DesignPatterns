@@ -1,0 +1,79 @@
+The Observer Pattern is a behavioral design pattern where one object (Subject) maintains a list of its dependents (Observers) and notifies them automatically of any state changes, typically by calling one of their methods.
+
+Think of YouTube:
+
+You (user) subscribe to a channel.
+When the channel uploads a new video (event), you get notified.
+YouTube = Subject, You = Observer.
+Component	Role
+Subject	Holds a list of observers and notifies them on change.
+Observer	Interface that all observers implement (with an update() method or similar).
+ConcreteSubject	Implements Subject and triggers updates.
+ConcreteObserver	Implements Observer and defines how to respond to changes.
+
+
+public interface Observer {
+    void update(String message);
+}
+
+public class EmailSubscriber implements Observer {
+    public void update(String message) {
+        System.out.println("Email received: " + message);
+    }
+}
+java
+Copy
+Edit
+public class SMSSubscriber implements Observer {
+    public void update(String message) {
+        System.out.println("SMS received: " + message);
+    }
+}
+
+public interface Subject {
+    void addObserver(Observer o);
+    void removeObserver(Observer o);
+    void notifyObservers(String message);
+}
+public class Flipkart implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    public void notifyObservers(String message) {
+        for (Observer o : observers) {
+            o.update(message);
+        }
+    }
+
+    public void orderPlaced() {
+        System.out.println("Order placed in Flipkart");
+        notifyObservers("Your order has been placed");
+    }
+}
+
+public class Client {
+    public static void main(String[] args) {
+        Flipkart flipkart = new Flipkart();
+
+        Observer email = new EmailSubscriber();
+        Observer sms = new SMSSubscriber();
+
+        flipkart.addObserver(email);
+        flipkart.addObserver(sms);
+
+        flipkart.orderPlaced();
+    }
+}
+
+Is it Structural?
+No.
+The Observer Pattern is a Behavioral Design Pattern, not structural.
+It’s about how objects communicate and behave — not about how they are structured.
+
