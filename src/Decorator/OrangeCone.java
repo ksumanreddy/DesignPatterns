@@ -3,8 +3,14 @@ package Decorator;
 public class OrangeCone implements IceCreamConeConstituents {
     private IceCreamConeConstituents iceCreamConeConstituents;
 
+    // Orhange Cone can exist independently , meaning Only orange cone 
+    // can be added , So have default construct
     public OrangeCone(){}
 
+
+    // I can have an instance where I have Choclate cone and 
+    // Orange Cone , I need to use another constructor with 
+    //choclate cone , SO use dependcy injection
     public OrangeCone(IceCreamConeConstituents iceCreamConeConstituents){
         this.iceCreamConeConstituents = iceCreamConeConstituents;
     }
