@@ -3,7 +3,7 @@ package Prototype;
 public class IntelligentStudent extends Student{
     private float iq;
 
-    private IntelligentStudent(){}
+    IntelligentStudent(){}
 
     private IntelligentStudent(IntelligentStudent old){
         super(old);
